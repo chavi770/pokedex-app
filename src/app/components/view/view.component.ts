@@ -31,19 +31,13 @@ export class ViewComponent implements OnInit {
 
 
   ngOnInit(): void {
-
     this.pokemonService.getMoreData(this.data.name).subscribe(result => {
       this.pokemon = result;
       this.pokemonService.getArea(this.pokemon.id).subscribe(regionResults => {
         this.area = regionResults;
         this.getEvolution();
       })
-
-
-
     })
-
-
   }
 
   getEvolution() {
@@ -61,7 +55,6 @@ export class ViewComponent implements OnInit {
       id: this.getId(chain.species.url),
       name: chain.species.name
     });
-
     if (chain.evolves_to.length) {
       this.getEvolves(chain.evolves_to[0]);
     }
@@ -70,9 +63,6 @@ export class ViewComponent implements OnInit {
   getType(pokemon: any): string {
     return this.pokemonService.getType(pokemon);
   }
-
-
-
 
   getId(url: string): number {
     const splitUrl = url.split('/')

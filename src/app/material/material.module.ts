@@ -9,13 +9,14 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+
 const modules: any = [MatToolbarModule, MatButtonModule,
   MatIconModule, MatCardModule,
   LayoutModule,
   MatGridListModule,
-   MatDialogModule, 
-   MatTabsModule,
-    ScrollingModule]
+  MatDialogModule,
+  MatTabsModule,
+  ScrollingModule]
 
 @NgModule({
   declarations: [],

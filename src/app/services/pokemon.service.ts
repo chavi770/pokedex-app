@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { Pokemon } from '../model/Pokemon';
+import { Pokemon, pokemonResult } from '../model/Pokemon';
 import { LocalStorageService } from './local-storage.service';
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,8 @@ import { LocalStorageService } from './local-storage.service';
 export class PokemonService {
 
   apiUrl: string = 'https://pokeapi.co/api/v2/';
-  pokemonsList: BehaviorSubject<{ name: string, url: string, isFavorite: boolean }[]> = new BehaviorSubject([] as any);
-
+  pokemonsList: BehaviorSubject<pokemonResult[]> = new BehaviorSubject([] as any);
+max_favirute:number=5
   constructor(private http: HttpClient, private localStorageService: LocalStorageService) { }
 
 
@@ -38,26 +38,22 @@ export class PokemonService {
 
   //Add or remove pokemon to the Favorites list
   addOrRemovePokemon(name: string) {
-    // check if is the array
     this.localStorageService.getItems();
-
     if (this.localStorageService.getItems().includes(name)) {
-
       this.localStorageService.setItems('favorites', this.localStorageService.getItems().filter((pok: any) => pok !== name))
-      // go to the pokimon list and update teh status
+      // Go to the pokimon list and update the status
       const index = this.pokemonsList.value.findIndex(p => p.name == name);
       this.pokemonsList.value[index].isFavorite = false;
       this.pokemonsList.next(this.pokemonsList.value);
     } else {
-      // check if ther is a space in the array
+      // check if there is a space in the array
       this.pokemonsList.value.filter(p => p.isFavorite);
-
-      if (this.pokemonsList.value.filter(p => p.isFavorite).length > 5) {
+      if (this.pokemonsList.value.filter(p => p.isFavorite).length > this.max_favirute) {
         alert('Oops, you have too many favorite Pokemons. You must select up to 6 Pokemons')
       } else {
-        // add to  lcoa strage 
+        // Add to  lcoal strage 
         this.localStorageService.pushItem(name)
-        // change status in the list and make next
+        // Change status in the list and make next
         const index = this.pokemonsList.value.findIndex(p => p.name == name);
         this.pokemonsList.value[index].isFavorite = true;
         this.pokemonsList.next(this.pokemonsList.value);
