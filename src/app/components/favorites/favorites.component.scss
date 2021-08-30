@@ -1,0 +1,27 @@
+@import url(//db.onlinewebfonts.com/c/f4d1593471d222ddebd973210265762a?family=Pokemon);
+
+h1{
+    font-family: Pokemon;
+    letter-spacing: 3px;
+    color: red; 
+    text-align: center;
+}
+
+.card-handler{
+    cursor: pointer;
+        background-color: rgba(245, 229, 229, 0.531);
+        cursor: pointer;
+
+    h2{
+font-family: Pokemon;
+letter-spacing: 3px;
+    }
+
+    mat-icon{
+        color: red;
+    }
+}
+
+.content {
+    padding: 16px;
+}

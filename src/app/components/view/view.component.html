@@ -1,0 +1,88 @@
+<div class="sheet__img ">
+    <h1>{{pokemon.name}}</h1>
+    <img src="https://projectpokemon.org/images/normal-sprite/{{data.name}}.gif" [alt]="pokemon.name">
+</div>
+
+<mat-tab-group class="sheet">
+    <mat-tab label="About">
+        <div class="flex__tabs">
+
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th> Types:</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let t of pokemon.types">
+                            <td>{{t.type.name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p *ngIf="area"> <span>Area:</span> {{area.name}}</p>
+
+            </div>
+
+
+            <div>
+                <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="viewport">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Moves:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let i of pokemon.moves">
+                                <td>{{i.move.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </cdk-virtual-scroll-viewport>
+            </div>
+
+        </div>
+
+
+
+    </mat-tab>
+    <mat-tab label="Evolution">
+
+        <div class="flex_evolution_tabs">
+
+            <div class="" *ngFor="let evolution of pokemon.evolutions">
+
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/{{evolution.id}}.svg"
+                    alt="evolution" class="img-fluid d-block mx-auto" style="width: 30px;">
+                <p>{{evolution.name}}</p>
+
+            </div>
+
+        </div>
+
+
+    </mat-tab>
+
+    <mat-tab label=" Video Games:">
+
+        <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="viewport__full ">
+            <table>
+                <thead>
+                    <tr>
+                        <th> Games:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let game of pokemon.game_indices">
+                        <td>
+                            {{game.version.name}}
+                    </tr>
+                </tbody>
+            </table>
+        </cdk-virtual-scroll-viewport>
+
+    </mat-tab>
+</mat-tab-group>

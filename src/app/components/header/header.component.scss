@@ -1,0 +1,18 @@
+@import url(//db.onlinewebfonts.com/c/f4d1593471d222ddebd973210265762a?family=Pokemon);
+
+.header{
+    &__spacer {
+        flex: 1 1 auto;
+    
+    }
+   h1{
+       font-family: Pokemon;
+       letter-spacing: 3px;
+       font-size: 3rem;
+       color: #ffcc01;
+       -webkit-text-stroke: 2px  #385ca9;
+   } 
+   a{
+       color: white;
+   }
+}
